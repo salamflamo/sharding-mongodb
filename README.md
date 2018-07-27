@@ -7,9 +7,11 @@ install server ubuntu spek ram 1 gb, mongo versi 4 community
 Shards : 
 - shard1
 - shard2
+***
 Config :
 - config1
 - config2
+***
 Router :
 - router
 ***
