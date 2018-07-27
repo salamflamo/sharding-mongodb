@@ -3,15 +3,16 @@
 Dokumentasi ini hanya bersifat sementara, dimana masih ada step yang tidak bisa.
 case:
 install server ubuntu spek ram 1 gb, mongo versi 4 community
+***
 Shards : 
-	- shard1
-	- shard2
+- shard1
+- shard2
 Config :
-	- config1
-	- config2
+- config1
+- config2
 Router :
-	- router
-
+- router
+***
 ReplSet untuk Shard dikasih nama shard01
 ReplSet untuk config dikasih nama configserver
 *** 
