@@ -63,7 +63,9 @@ jika sudah maka ketik perintah `rs.status()` nanti ada pesan ada PRIMARY dan SEC
 ##### Masuk ke server router
 - ketik perintah
 `mongos --port 27020 --configdb configserver/config1:27019,config2:27019 --bind_ip 0.0.0.0`
+
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
+
 ** port yang di daftarkan 27020
 ##### Masuk ke server router, dengan ssh yang baru
 - ketik perintah `mongo --port 27020` sampai masuk ke `>`
