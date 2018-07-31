@@ -28,29 +28,19 @@ jika sudah maka saya akan mengkontrol semua server tetangga melalui server route
 - Tambahkan masing-masih ip ke /etc/hosts dengan nama shard1 dan shard2
 - Buat folder /data/db dan /data/configdb , ganti chown menjadi user ,contoh `chown developer /data/db /data/congidb`
 -------
-
-### Untuk shard1 dan shard2 dengan ReplSet shard01
+-------
+### Untuk shard1 dan shard2
 ##### Masuk ke server shard1 dan shard2
 - ketik perintah
-`mongod --shardsvr --replSet shard01 --noprealloc --smallfiles --oplogSize 16 --bind_ip 0.0.0.0 --noauth`
+`mongod --shardsvr --bind_ip 0.0.0.0`
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
 ** default port adalah 27018
 ----------
-#### Masuk ke server shard yang akan di jadikan primary, disini contoh 'shard1'
-- ketik perintah `mongo --port 27018` sampai masuk ke `>`
-- tambahkan members dengan cara 
-```
-rs.initiate({ _id:"shard01", version: 1, members:[ {_id:0,host:"shard1:27018"}, {_id:1,host:"shard2:27018"} ] })
-```
-jika sudah maka ketik perintah `rs.status()` nanti ada pesan ada PRIMARY dan SECONDARY
-
--------------
--------------
-
+----------
 ### Untuk config1 dan config2 dengan ReplSet configserver
 ##### Masuk ke server config1 dan config2
 - ketik perintah
-`mongod --configsvr --replSet configserver --noprealloc --smallfiles --oplogSize 16 --bind_ip 0.0.0.0 --noauth`
+`mongod --configsvr --replSet configserver --bind_ip 0.0.0.0`
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
 ** default port adalah 27019
 ----------
@@ -68,13 +58,14 @@ jika sudah maka ketik perintah `rs.status()` nanti ada pesan ada PRIMARY dan SEC
 ### Untuk router
 ##### Masuk ke server router
 - ketik perintah
-`mongos --port 27020 --configdb configserver/config1:27019,config2:27019 --bind_ip 0.0.0.0 --noauth`
+`mongos --port 27020 --configdb configserver/config1:27019,config2:27019 --bind_ip 0.0.0.0`
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
 ** port yang di daftarkan 27020
 ##### Masuk ke server router, dengan ssh yang baru
 - ketik perintah `mongo --port 27020` sampai masuk ke `>`
 - tambahkan members dengan cara
-`sh.addShard("shard01/shard1:27018")`
+`sh.addShard("shard1:27018")`
+`sh.addShard("shard2:27018")`
 jika bisa harusnya ada pesan `OK` , jika tidak bisa berarti error sama dengan yang punya saya.
 --------
 Ada beberapa link yang menginspirasi saya.
