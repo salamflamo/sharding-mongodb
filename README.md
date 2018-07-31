@@ -75,6 +75,16 @@ jika sudah maka ketik perintah `rs.status()` nanti ada pesan ada PRIMARY dan SEC
 `sh.addShard("xx.2.4:27018")` dan `sh.addShard("xx.2.5:27018")`
 jika bisa harusnya ada pesan `OK` , jika tidak bisa berarti error sama dengan yang punya saya.
 --------
+### Masih didalam router
+- Tambahkan enable sharding,
+>`db.runCommand({enableSharding:"testDB"})` jika berhasil maka OK
+- >`sh.shardCollection("testDB.testData",{"name":1})` jika berhasil maka OK
+- >`sh.status()` kemudian `sh.getBalancerState()` maka akan `true`
+- kemudian keluar dan lihat doscovernya
+$`mongostate --discover --host xx.2.4:27018,xx.2.5:27018` jika berhasil maka akan berjalan
+- jika sudah silahkan test dengan robomongo konek ke ip router dengan port router
+------------
+------------
 Ada beberapa link yang menginspirasi saya.
 - [https://blog.serverdensity.com/automating-partitioning-sharding-and-failover-with-mongodb/](https://blog.serverdensity.com/automating-partitioning-sharding-and-failover-with-mongodb/)
 - [https://github.com/alexcomu/mongodb_howto/tree/master/04_sharding](https://github.com/alexcomu/mongodb_howto/tree/master/04_sharding)
