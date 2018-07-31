@@ -33,7 +33,9 @@ jika sudah maka saya akan mengkontrol semua server tetangga melalui server route
 ##### Masuk ke server shard1 dan shard2
 - ketik perintah
 `mongod --shardsvr --bind_ip 0.0.0.0`
+
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
+
 ** default port adalah 27018
 ----------
 ----------
@@ -41,7 +43,9 @@ jika sudah maka saya akan mengkontrol semua server tetangga melalui server route
 ##### Masuk ke server config1 dan config2
 - ketik perintah
 `mongod --configsvr --replSet configserver --bind_ip 0.0.0.0`
+
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
+
 ** default port adalah 27019
 ----------
 #### Masuk ke server config yang akan di jadikan primary, disini contoh 'config1'
