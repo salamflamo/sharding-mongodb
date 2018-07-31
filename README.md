@@ -77,5 +77,6 @@ jika bisa harusnya ada pesan `OK` , jika tidak bisa berarti error sama dengan ya
 Ada beberapa link yang menginspirasi saya.
 - [https://blog.serverdensity.com/automating-partitioning-sharding-and-failover-with-mongodb/](https://blog.serverdensity.com/automating-partitioning-sharding-and-failover-with-mongodb/)
 - [https://github.com/alexcomu/mongodb_howto/tree/master/04_sharding](https://github.com/alexcomu/mongodb_howto/tree/master/04_sharding)
+- [https://www.youtube.com/watch?v=qYzYp1bPCPg](https://www.youtube.com/watch?v=qYzYp1bPCPg)
 
 silahkan kunjungi.
