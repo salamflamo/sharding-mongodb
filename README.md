@@ -7,8 +7,9 @@ install server ubuntu spek ram 1 gb, mongo versi 4 community
 Disini disediakan ip address private version dan nama server 
 
 Shards : 
-- shard1 xx.2.5
-- shard2 xx.2.4
+- shard1 xx.2.4
+- shard2 xx.2.5
+- shard3 xx.2.6
 ***
 Config :
 - config1 xx.2.3
@@ -32,15 +33,30 @@ jika sudah maka saya akan mengkontrol semua server tetangga melalui server route
 -------
 -------
 ### Untuk shard1 dan shard2
-##### Masuk ke server shard1 dan shard2
+##### Masuk ke server shard1 dan shard2 dan shard3
 - ketik perintah
-`mongod --shardsvr --bind_ip 0.0.0.0`
+`mongod --shardsvr --bind_ip 0.0.0.0 --replSet <namasreplica>`
 
 ** --bind_ip agar server yang bersangkutan bisa diakses oleh semua server tetangga
 
 ** default port adalah 27018
 ----------
+##### Masuk ke server shard1
+-  `mongo --port 27018`
+- 
+```
+rs.initiate({
+_id:"<namareplset>",
+version:1,
+members:[
+{_id:0,host:"xx.2.4:27018"},
+{_id:1,host:"xx.2.5:27018"},
+]
+})
+```
+- `rs.addArb("xx.2.6:27018")`
 ----------
+
 ### Untuk config1 dan config2 dengan ReplSet configserver
 ##### Masuk ke server config1 dan config2
 - ketik perintah
@@ -72,7 +88,7 @@ jika sudah maka ketik perintah `rs.status()` nanti ada pesan ada PRIMARY dan SEC
 ##### Masuk ke server router, dengan ssh yang baru
 - ketik perintah `mongo xx.2.1:27020/admin` sampai masuk ke `>`
 - tambahkan members dengan cara
-`sh.addShard("xx.2.4:27018")` dan `sh.addShard("xx.2.5:27018")`
+`sh.addShard("xx.2.4:27018")` 
 jika bisa harusnya ada pesan `OK` , jika tidak bisa berarti error sama dengan yang punya saya.
 --------
 ### Masih didalam router
